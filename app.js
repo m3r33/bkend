@@ -5,10 +5,10 @@ const port = process.env.PORT || 3001;
 app.get("/", (req, res) => res.type('html').send("Hello There!"));
 
 
-app.post("/endpoint", (req, res) => {
-    const body = req.body;
-    console.log({body, res})
-    return res.statusCode;
+app.post("/endpoint", async (req, res) => {
+    const body = await JSON.parse(req.body);
+    console.log({body, res.statusCode})
+    return res;
 })
 
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
