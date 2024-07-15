@@ -9,7 +9,7 @@ app.use(express.json());
 app.get("/", (req, res) => res.type('html').send("Hello There!"));
 
 app.post("/endpoint", async (req, res) => {
-    const body = req.body;
+    const body = await req.body;
     console.log({ body });
     return res.json(body);
 });
