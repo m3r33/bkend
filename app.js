@@ -7,8 +7,9 @@ app.get("/", (req, res) => res.type('html').send("Hello There!"));
 
 app.post("/endpoint", async (req, res) => {
     const body = await JSON.parse(req.body);
-    console.log({body, res.statusCode})
-    return res;
+    const response =  await res.json();
+    console.log({body, response})
+    return response;
 })
 
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
