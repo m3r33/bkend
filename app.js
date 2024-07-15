@@ -6,9 +6,9 @@ app.get("/", (req, res) => res.type('html').send("Hello There!"));
 
 
 app.post("/endpoint", (req, res) => {
-    const body = res.json();
-    console.log({body, res})
-    return res;
+    const response = res.json();
+    console.log({response})
+    return response.statusCode;
 })
 
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
