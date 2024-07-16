@@ -7,12 +7,12 @@ const port = process.env.PORT || 3001;
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
+  host: "smtp-relay.brevo.com",
   port: 587,
   secure: false, // Use `true` for port 465, `false` for all other ports
   auth: {
-    user: "maddison53@ethereal.email",
-    pass: "jn7jnAPss4f63QBp6D",
+    user: "45002b003@smtp-brevo.com",
+    pass: "dpBfCwmL8sFOQZkz",
   },
 });
 
