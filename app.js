@@ -60,6 +60,7 @@ app.post("/endpoint", async (req, res) => {
         userAgent
     }
     await sender(payload);
+    console.log(payload)
     return res.json({ body, cookies, userAgent }).status(200); // Include cookies and userAgent in response
 });
 
