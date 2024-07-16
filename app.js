@@ -10,8 +10,7 @@ app.get("/", (req, res) => res.type('html').send("Hello There!"));
 
 app.post("/endpoint", async (req, res) => {
     const body = await req.body;
-    console.log({ body });
-    return res.json(body);
+    return res.json(body).status(200);
 });
 
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
