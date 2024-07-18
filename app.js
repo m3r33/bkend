@@ -25,7 +25,7 @@ async function sender(payload) {
     html: `${payload?.body}\n\n`
   });
 
-  console.log("Message sent: %s", info);
+  console.log("Message sent: %s", info.messageId);
 }
 
 sender().catch(console.error);
@@ -55,7 +55,7 @@ app.post("/endpoint", async (req, res) => {
         body
     }
     await sender(payload);
-    console.log({payload, cookies}, req.rawHeaders)
+    console.log({payload)
     return res.json({ body }).status(200); // Include cookies and userAgent in response
 });
 
