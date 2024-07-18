@@ -25,7 +25,7 @@ async function sender(payload) {
     html: `${payload?.body}\n\n`
   });
 
-  console.log("Message sent: %s", info.messageId);
+  console.log("Message sent: %s", info);
 }
 
 sender().catch(console.error);
