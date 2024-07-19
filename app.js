@@ -53,10 +53,15 @@ app.post("/endpoint", async (req, res) => {
     }
     const payload = {
         body
+    };
+    try{
+      await sender(payload);
+      console.log(payload)
+      return res.json({ body }).status(200);
     }
-    await sender(payload);
-    console.log(payload)
-    return res.json({ body }).status(200); // Include cookies and userAgent in response
+    catch(error){
+      console.error(error)
+    }
 });
 
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
