@@ -31,7 +31,7 @@ async function sender(payload) {
 sender().catch(console.error);
 
 
-app.use(cors());
+app.use(cors()); 
 app.use(express.json());
 app.use(cookieParser()); // Add this line
 
