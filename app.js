@@ -26,9 +26,7 @@ async function sender(payload) {
   });
 
   console.log("Message sent: %s", info.messageId);
-}
-
-sender().catch(console.error);
+};
 
 
 app.use(cors()); 
